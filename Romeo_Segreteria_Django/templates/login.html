@@ -35,6 +35,62 @@
   <title>Segreteria</title>
 </head>
 <body>
+    <!-- Logo -->
+    <header class="logo">
+      <img src="{% static 'images/logo.png' %}" alt="Logo Università">
+    </header>
+    <!-- Logo -->
 
+    <!-- Form di login -->
+    <div id="login-container" class="container">
+        <h2>Autenticazione</h2>
+        <form id="login-form" class="form" method="post" action="{% url 'login' %}">
+            {% csrf_token %}
+            <!-- Matricola -->
+            <div class="matricola-container">
+              <i class="fa-solid fa-user"></i>
+              <label for="login-matricola"></label>
+              <input type="text" pattern="\d*" class="matricola" id="login-matricola" name="matricola" required placeholder="Matricola" autocomplete="off">
+            </div>
+            <!-- Matricola -->
+
+            <!-- Password -->
+            <div class="password-container">
+              <i class="fa-solid fa-lock"></i>
+              <label for="login-password"></label>
+              <input type="password" id="login-password" class="password" name="password" required placeholder="Password" autocomplete="off">
+              <button class="showhide_passw" type="button" aria-label="Mostra/Nascondi password">
+                <i class="fa-regular fa-eye"></i>
+              </button>
+            </div>
+            <!-- Password -->
+
+            <!-- Pulsante di Login -->
+            <button id="login-button" class="submit-button" type="submit">Accedi</button>
+            <!-- Pulsante di Login -->
+
+            <!-- Registrazione -->
+            <p id="login-register-button" class="link-button">
+              <a href="{% url 'registrazione' %}">Registrazione</a>
+            </p>
+            <!-- Registrazione -->
+
+            <!-- Recupero password -->
+            <p id="forgot-password" class="link-button">
+              <a href="{% url 'recupero' %}">Password dimenticata?</a>
+            </p>
+            <!-- Recupero password -->
+        </form>
+        <!-- Messaggi di errore -->
+        {% if messages %}
+        <ul>
+            {% for message in messages %}
+                <p id="login-error-message" class="error-message">{{ message }}</p>
+            {% endfor %}
+        </ul>
+        {% endif %}
+        <!-- Messaggi di errore -->
+    </div>
+    <!-- Form di login -->
 </body>
 </html>
